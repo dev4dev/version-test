@@ -1,3 +1,3 @@
 #!/bin/sh
 
-git tag -l --sort=refname build-no*
+git tag -l --sort=committerdate build-no*
