@@ -15,7 +15,7 @@ pipeline{
     stages {
         // https://www.jenkins.io/blog/2016/10/16/stage-lock-milestone/
         // https://www.jenkins.io/doc/pipeline/steps/pipeline-milestone-step/
-        milesone
+        milestone()
         lock(resource: "builder_${env.NODE_NAME}", inversePrecedence: true) {
             stage("Dev") {
                 steps {
