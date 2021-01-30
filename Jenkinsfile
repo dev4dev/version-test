@@ -12,36 +12,28 @@ pipeline{
             )}"""
     }
     
-    stages {
-        stage("Builds") {
+    lock(resource: "builder_${env.NODE_NAME}", inversePrecedence: true) {
+        // https://www.jenkins.io/blog/2016/10/16/stage-lock-milestone/
+        // https://www.jenkins.io/doc/pipeline/steps/pipeline-milestone-step/
+        milestone("${PROJECT_BUILD_NUMBER}" as Integer)
+        stage("Dev") {
             steps {
-                lock(resource: "builder_${env.NODE_NAME}", inversePrecedence: true) {
-                    // https://www.jenkins.io/blog/2016/10/16/stage-lock-milestone/
-                    // https://www.jenkins.io/doc/pipeline/steps/pipeline-milestone-step/
-                    milestone("${PROJECT_BUILD_NUMBER}" as Integer)
-                    stages {
-                        stage("Dev") {
-                            steps {
-                                sleep 60
-                                sh "echo ${PROJECT_BUILD_NUMBER}"
-                            }
-                        }
+                sleep 60
+                sh "echo ${PROJECT_BUILD_NUMBER}"
+            }
+        }
 
-                        stage("Staging") {
-                            steps {
-                                sleep 60
-                                sh "echo ${PROJECT_BUILD_NUMBER}"
-                            }
-                        }
+        stage("Staging") {
+            steps {
+                sleep 60
+                sh "echo ${PROJECT_BUILD_NUMBER}"
+            }
+        }
 
-                        stage("Appstore") {
-                            steps {
-                                sleep 60
-                                sh "echo ${PROJECT_BUILD_NUMBER}"
-                            }
-                        }
-                    }
-                }
+        stage("Appstore") {
+            steps {
+                sleep 60
+                sh "echo ${PROJECT_BUILD_NUMBER}"
             }
         }
     }
