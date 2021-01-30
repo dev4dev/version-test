@@ -12,7 +12,7 @@ pipeline{
             )}"""
     }
     
-    milestone()
+    // milestone()
     stages {
         // https://www.jenkins.io/blog/2016/10/16/stage-lock-milestone/
         // https://www.jenkins.io/doc/pipeline/steps/pipeline-milestone-step/
