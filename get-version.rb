@@ -1,29 +1,31 @@
 #!/usr/bin/env ruby
 
-# result = `git tag build-no/20 &> /dev/null`
-#
-# p result
-# p $?.success?
-
-def get_version
+def get_build_number
     prefix = 'build-no'
 
+    # fetch all tags
     `git fetch --all --tags &> /dev/null`
+    
+    # get latest number with our prefix
     version = `git tag -l --sort=-v:refname #{prefix}* | head -n 1 | awk '{ split($0, a, "/"); print a[2]}'`.to_i
     
     loop do
       loop do
         version += 1
-        puts "setting #{version}"
+        # try to add a new tag with a new build number
         `git tag #{prefix}/#{version} &> /dev/null`
         break if $?.success?
       end
-      puts "pushing #{version}"
-      `git push origin --tags &> /dev/null`
-      break if $?.success?
+      # try to push the new tag
+      `git push origin #{prefix}/#{version} &> /dev/null`
+      
+      pushed = $?.success?
+      # remove the conflicting tag if push failed
+      `git tag -d #{prefix}/#{version} &> /dev/null` unless pushed
+      break if pushed
     end
 
     return version
 end
 
-puts get_version()
+puts get_build_number()
