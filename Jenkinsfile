@@ -19,7 +19,7 @@ pipeline {
                 lock(resource: "builder_${env.NODE_NAME}", inversePrecedence: true) {
                     // https://www.jenkins.io/blog/2016/10/16/stage-lock-milestone/
                     // https://www.jenkins.io/doc/pipeline/steps/pipeline-milestone-step/
-                    sleep 60
+                    sleep 180
                     sh "echo ${PROJECT_BUILD_NUMBER}"
                 }
             }
