@@ -1,8 +1,6 @@
 #!/usr/bin/env ruby
 
-def get_build_number
-    prefix = 'build-no'
-
+def get_build_number(prefix)
     # fetch all tags
     `git fetch --all --tags &> /dev/null`
     
@@ -28,4 +26,4 @@ def get_build_number
     return version
 end
 
-puts get_build_number()
+puts get_build_number('build-no')
