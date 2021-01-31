@@ -15,10 +15,10 @@ pipeline {
     stages {
         stage("Dev") {
             steps {
+                milestone("${PROJECT_BUILD_NUMBER}" as Integer)
                 lock(resource: "builder_${env.NODE_NAME}", inversePrecedence: true) {
                     // https://www.jenkins.io/blog/2016/10/16/stage-lock-milestone/
                     // https://www.jenkins.io/doc/pipeline/steps/pipeline-milestone-step/
-                    milestone("${PROJECT_BUILD_NUMBER}" as Integer)
                     sleep 60
                     sh "echo ${PROJECT_BUILD_NUMBER}"
                 }
