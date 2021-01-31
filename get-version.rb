@@ -26,4 +26,4 @@ def get_build_number(prefix)
     return version
 end
 
-puts get_build_number('build-no')
+p get_build_number('build-no')

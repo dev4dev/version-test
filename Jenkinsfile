@@ -29,7 +29,7 @@ pipeline {
         stage("Dev") {
             steps {
                 sleep 60
-                sh "echo ${BUILD_NUMBER}"
+                sh "echo \"${BUILD_NUMBER}\""
             }
         }
 
