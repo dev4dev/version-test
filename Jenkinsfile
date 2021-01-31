@@ -5,12 +5,13 @@ pipeline {
     options {
         disableConcurrentBuilds()
     }
-    // environment {
-        // BUILD_NUMBER = """${sh(
-        //         returnStdout: true,
-        //         script: 'ruby get-version.rb'
-        //     )}"""
-    // }
+    environment {
+        // overwrite BUILD_NUMBER
+        BUILD_NUMBER = """${sh(
+                returnStdout: true,
+                script: 'ruby get-version.rb'
+            )}"""
+    }
     
     stages {
         // stage("Dev") {
