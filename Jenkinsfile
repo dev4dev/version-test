@@ -12,6 +12,7 @@ pipeline {
             )}"""
     }
     
+    stages {
         stage("Dev") {
             lock(resource: "builder_${env.NODE_NAME}", inversePrecedence: true) {
                 // https://www.jenkins.io/blog/2016/10/16/stage-lock-milestone/
@@ -37,4 +38,5 @@ pipeline {
         //         sh "echo ${PROJECT_BUILD_NUMBER}"
         //     }
         // }
+}
 }
