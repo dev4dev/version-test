@@ -10,7 +10,7 @@ pipeline {
         BUILD_NUMBER = """${sh(
                 returnStdout: true,
                 script: 'ruby get-version.rb'
-            )}"""
+            )}""".trim()
     }
     
     stages {
