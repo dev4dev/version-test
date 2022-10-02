@@ -1,7 +1,5 @@
 pipeline {
-    agent{
-        label "xcode"
-    }
+    agent any
     options {
         disableConcurrentBuilds()
     }
