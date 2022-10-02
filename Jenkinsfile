@@ -60,13 +60,14 @@ pipeline {
                     userRemoteConfigs: scm.userRemoteConfigs
                 ])
 
-                script {
-                    // overwrite BUILD_NUMBER with a custom value from our script
-                    env.BUILD_NUMBER = "${sh(returnStdout: true, script: 'ruby ./scripts/get-version.rb').trim()}"
-                }
+                // script {
+                //     // overwrite BUILD_NUMBER with a custom value from our script
+                //     env.BUILD_NUMBER = "${sh(returnStdout: true, script: 'ruby ./scripts/get-version.rb').trim()}"
+                // }
 
                 sleep 60
-                sh "echo \"${BUILD_NUMBER}\""
+                sh "git log --pretty=format:\"%C(yellow)%h%Creset %C(cyan)%ad%Creset | %Cgreen%s%Cred%d%Creset %C(magenta) [%an <%ae>]%Creset\" --graph --date=default --all"
+                // sh "echo \"${BUILD_NUMBER}\""
             }
         }
 
