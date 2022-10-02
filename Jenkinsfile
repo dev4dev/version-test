@@ -5,13 +5,13 @@ pipeline {
         // Skip default checkout flow, the custom one will be performed in a "Checkout" step
         skipDefaultCheckout()
     }
-    environment {
-        // overwrite BUILD_NUMBER
-        // BUILD_NUMBER = """${sh(
-        //         returnStdout: true,
-        //         script: 'ruby get-version.rb'
-        //     )}""".trim()
-    }
+    // environment {
+    //     // overwrite BUILD_NUMBER
+    //     // BUILD_NUMBER = """${sh(
+    //     //         returnStdout: true,
+    //     //         script: 'ruby get-version.rb'
+    //     //     )}""".trim()
+    // }
     
     stages {
         // stage("Dev") {
