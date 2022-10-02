@@ -38,7 +38,7 @@ pipeline {
                         [
                             $class: 'CloneOption',
                             depth: 10,
-                            // noTags: false,
+                            noTags: true,
                             reference: '',
                             shallow: true
                         ],
