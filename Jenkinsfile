@@ -66,7 +66,7 @@ pipeline {
                 // }
 
                 sleep 60
-                sh "git log --pretty=format:\"%C(yellow)%h%Creset %C(cyan)%ad%Creset | %Cgreen%s%Cred%d%Creset %C(magenta) [%an <%ae>]%Creset\" --graph --date=default --all"
+                sh "git log --pretty=format:\"%C(yellow)%h%Creset %C(cyan)%ad%Creset | %Cgreen%s%Cred%d%Creset %C(magenta) [%an <%ae>]%Creset\" --graph --date=default"
                 // sh "echo \"${BUILD_NUMBER}\""
             }
         }
