@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label "xcode"
+    }
     options {
         disableConcurrentBuilds()
         // Skip default checkout flow, the custom one will be performed in a "Checkout" step
@@ -26,7 +28,7 @@ pipeline {
         //     }
         // }
 
-        stage("Dev") {
+        stage("Checkout") {
             steps {
                 // checkout scm
                 checkout([
