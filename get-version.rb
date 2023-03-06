@@ -2,7 +2,7 @@
 
 def get_build_number(prefix)
     # get latest number with our prefix
-    version = `git ls-remote -q --tags --sort=-v:refname | grep 'refs/tags/build-no/*' | head -n 1 | awk '{print $2}' | awk -F/ '{print $NF}'`.to_i
+    version = `git ls-remote -q --tags --sort=-v:refname | grep 'refs/tags/#{prefix}/*' | head -n 1 | awk '{print $2}' | awk -F/ '{print $NF}'`.to_i
     
     loop do
       loop do
