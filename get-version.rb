@@ -1,11 +1,8 @@
 #!/usr/bin/env ruby
 
 def get_build_number(prefix)
-    # fetch all tags
-    `git fetch --tags &> /dev/null`
-    
     # get latest number with our prefix
-    version = `git tag -l --sort=-v:refname #{prefix}* | head -n 1 | awk '{ split($0, a, "/"); print a[2]}'`.to_i
+    version = `git ls-remote -q --tags --sort=-v:refname | grep 'refs/tags/build-no/*' | head -n 1 | awk '{print $2}' | awk -F/ '{print $NF}'`.to_i
     
     loop do
       loop do
@@ -26,4 +23,4 @@ def get_build_number(prefix)
     return version
 end
 
-p get_build_number('build-no')
+puts get_build_number('build-no')
